@@ -4,7 +4,7 @@ import express from "express";
 // Refactor the following code to get rid of the legacy Date class.
 // Use Temporal.PlainDate instead. See /test/date_conversion.spec.mjs for examples.
 
-const convert = (date) => new Temporal.PlainDate(date.getFullYear(), date.getMonth(), date.getDate())
+const convert = (date) => date ? new Temporal.PlainDate(date.getFullYear(), date.getMonth(), date.getDate()) : null
 function createApp(database) {
   const app = express();
 
@@ -70,7 +70,7 @@ function createApp(database) {
 
   function calculateReduction(date) {
     let reduction = 0;
-    if (date && isMonday(convert(date)) && !isHoliday(convert(date))) {
+    if (convert(date) && isMonday(convert(date)) && !isHoliday(convert(date))) {
       reduction = 35;
     }
     return reduction;
