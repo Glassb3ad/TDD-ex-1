@@ -80,12 +80,12 @@ function createApp(database) {
     return date.dayOfWeek === 1;
   }
 
-  function isHoliday(date) {
+  function isHoliday(date, date2) {
     const holidays = database.getHolidays();
     for (let row of holidays) {
       let holiday = new Date(row.holiday);
       if (
-        date &&
+        date2 &&
         date.getFullYear() === holiday.getFullYear() &&
         date.getMonth() === holiday.getMonth() &&
         date.getDate() === holiday.getDate()
